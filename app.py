@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, url_for, redirect, abort
+from flask import Flask, render_template, request, url_for, redirect, abort, send_file
 import database as db
+import os
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import or_, func
 
@@ -39,6 +40,22 @@ def create():
             db_session.commit()
         return redirect(url_for('index'))
     return render_template('create.html')
+
+
+@app.route('/download')
+def download():
+    db_session = scoped_session(sessionmaker(bind=db.engine))
+    category = request.args.get('category')
+    if not category:
+        todos = db_session.query(db.Todo).all()
+        filename = "all_list.txt"
+    else:
+        todos = db_session.query(db.Todo).filter_by(category=category).all()
+        filename = f"{category}_list.txt"
+    with open('list.txt', 'w') as f:
+        for todo in todos:
+            f.write(f'{todo.name} ({todo.category})\n{todo.value}\n\n')
+    return send_file(path_or_file='list.txt', as_attachment=True, download_name=filename)
 
 
 

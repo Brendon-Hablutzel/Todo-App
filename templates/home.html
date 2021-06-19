@@ -16,6 +16,8 @@
                 {% for category in categories %}
                 <a href="{{ url_for('index', category=category) }}" class="category">{{ category.capitalize() }}</a>
                 {% endfor %}
+                <br>
+                <a href="{{ url_for('download', category=category) }}">Download Todo List</a>
             </div>
             <hr>
             <div id="todos">
