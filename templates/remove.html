@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Remove Todo</title>
+        <link rel="stylesheet" href="/static/remove.css">
+    </head>
+    <body>
+        <header>
+            <h1 style="text-align:center;">Are you sure you want to remove '{{ todo.name }}'?</h1>
+        </header>
+        <main style="display:flex;justify-content:center;">
+            <div id="container">
+                <form method="post">
+                    <input type="submit" value="Yes" id="confirm">
+                </form>
+                <a href="{{ url_for('index') }}" id="cancel">No</a>
+            </div>
+        </main>
+    </body>
+</html>

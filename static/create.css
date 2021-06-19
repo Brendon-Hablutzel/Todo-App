@@ -1,0 +1,66 @@
+:root {
+    --one: #20152c;
+    --two: #995c8a;
+    --three: #cb95aa;
+    --four: #fdae55;
+    --five: #658cc8;
+}
+
+
+
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: linear-gradient(to bottom right, white, lightgray);
+    margin: 10px;
+}
+
+header {
+    text-align: center;
+    color: var(--one);
+}
+
+#conainer {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    width: 75%;
+    background-color: var(--five);
+    border-radius: 5px;
+}
+
+form > * {
+    border: 1px solid black;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 25px;
+    background-color: var(--three);
+    color: var(--one);
+    width: 90%;
+    border-radius: 5px;
+}
+
+#add-todo-name, #add-todo-category {
+    border: 1px solid black;
+    height: 40px;
+}
+
+#add-todo-value {
+    border: 1px solid black;
+    height: 200px;
+}
+
+
+form input::placeholder, textarea::placeholder {
+    font-size: 25px;
+    color: var(--two)
+}
+
+#add-todo-submit {
+    border: 1px solid black;
+}

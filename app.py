@@ -11,6 +11,20 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     db_session = scoped_session(sessionmaker(bind=db.engine))
+    category = request.args.get('category')
+    if category:
+        todos = db_session.query(db.Todo).filter_by(category=category).all()
+    else:
+        todos = db_session.query(db.Todo).all()
+        category = "All"
+    categories = list(set([entry[0] for entry in db_session.query(db.Todo.category).all()]))
+    return render_template('home.html', todos=todos, categories=categories, current_category=category)
+
+
+
+@app.route('/create', methods=['GET', 'POST'])
+def create():
+    db_session = scoped_session(sessionmaker(bind=db.engine))
     if request.method == 'POST':
         name = request.form.get('name')
         value = request.form.get('value')
@@ -24,27 +38,23 @@ def index():
             db_session.add(todo)
             db_session.commit()
         return redirect(url_for('index'))
-    category = request.args.get('category')
-    if category:
-        todos = db_session.query(db.Todo).filter_by(category=category).all()
-    else:
-        todos = db_session.query(db.Todo).all()
-        category = "All"
-    categories = list(set([entry[0] for entry in db_session.query(db.Todo.category).all()]))
-    return render_template('home.html', todos=todos, categories=categories, current_category=category)
+    return render_template('create.html')
 
 
 
-@app.route('/remove/<int:todo_id>')
+@app.route('/remove/<int:todo_id>', methods=['GET', 'POST'])
 def remove(todo_id):
     db_session = scoped_session(sessionmaker(bind=db.engine))
     todo = db_session.query(db.Todo).filter_by(id=todo_id).first()
-    if not todo:
-        abort(404)
+    if request.method == "POST":
+        if not todo:
+            abort(404)
+        else:
+            db_session.delete(todo)
+            db_session.commit()
+            return redirect(url_for('index'))
     else:
-        db_session.delete(todo)
-        db_session.commit()
-        return redirect(url_for('index'))
+        return render_template('remove.html', todo=todo)
 
 
 if __name__ == "__main__":
