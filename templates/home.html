@@ -6,7 +6,10 @@
     <body>
         <header>
             <h1>Todo ({{ current_category.capitalize() }})</h1>
-            <a href="{{ url_for('create') }}"><img src="/static/images/plus.png" id="add-todo-button"></a>
+            <div>
+                <a href="{{ url_for('download', category=category) }}"><img src="/static/images/download.png" id="download-button"></a>
+                <a href="{{ url_for('create') }}"><img src="/static/images/plus.png" id="add-todo-button"></a>
+            </div>
         </header>
         <main>
             <hr>
@@ -16,8 +19,6 @@
                 {% for category in categories %}
                 <a href="{{ url_for('index', category=category) }}" class="category">{{ category.capitalize() }}</a>
                 {% endfor %}
-                <br>
-                <a href="{{ url_for('download', category=category) }}">Download Todo List</a>
             </div>
             <hr>
             <div id="todos">

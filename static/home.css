@@ -81,12 +81,12 @@ header h1 {
 }
 
 
-#add-todo-button {
+#add-todo-button,#download-button {
     transition: 0.3s;
     height: 120px;
 }
 
-#add-todo-button:hover {
+#add-todo-button:hover,#download-button:hover {
     cursor: pointer;
     opacity: 50%;
 }
