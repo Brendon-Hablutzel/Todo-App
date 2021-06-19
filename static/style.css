@@ -121,7 +121,7 @@ header h1 {
 
 #add-todo-name,#add-todo-category {
     font-size: 25px;
-    height: 25%;
+    height: 10%;
 }
 
 #add-todo-value {
