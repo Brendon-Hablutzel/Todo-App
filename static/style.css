@@ -75,7 +75,7 @@ header h1 {
     display: none;
     position: fixed;
     z-index: 1;
-    padding-top: 200px;
+    padding-top: 100px;
     overflow: auto;
     top: 0;
     left: 0;
