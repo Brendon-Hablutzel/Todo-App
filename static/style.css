@@ -126,7 +126,7 @@ header h1 {
 
 #add-todo-value {
     font-size: 25px;
-    height: 25%;
+    height: auto;
 }
 
 #modal-content input::placeholder,textarea::placeholder {
