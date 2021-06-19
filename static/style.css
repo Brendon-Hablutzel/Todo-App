@@ -90,8 +90,8 @@ header h1 {
     border: 1px solid black;
     border-radius: 5px;
     width: 30%;
-    height: 40%;
     padding: 10px;
+    /* height: auto !important; */
 }
 
 #modal-content > * {
@@ -121,12 +121,12 @@ header h1 {
 
 #add-todo-name,#add-todo-category {
     font-size: 25px;
-    height: 40px;
+    height: 25%;
 }
 
 #add-todo-value {
     font-size: 25px;
-    height: 140px;
+    height: 25%;
 }
 
 #modal-content input::placeholder,textarea::placeholder {
