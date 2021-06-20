@@ -17,7 +17,7 @@ def index():
         todos = db_session.query(db.Todo).filter_by(category=category).all()
     else:
         todos = db_session.query(db.Todo).all()
-        category = "All"
+        category = "all"
     categories = list(set([entry[0] for entry in db_session.query(db.Todo.category).all()]))
     return render_template('home.html', todos=todos, categories=categories, current_category=category)
 
@@ -30,7 +30,7 @@ def create():
         name = request.form.get('name')
         value = request.form.get('value')
         category = request.form.get('category')
-        if name and value and category:
+        if name and category:
             todo = db.Todo(
                 name = name,
                 value = value,
@@ -46,7 +46,7 @@ def create():
 def download():
     db_session = scoped_session(sessionmaker(bind=db.engine))
     category = request.args.get('category')
-    if not category:
+    if not category or category == "all" or category == "All":
         todos = db_session.query(db.Todo).all()
         filename = "all_list.txt"
     else:
@@ -55,7 +55,7 @@ def download():
     with open('list.txt', 'w') as f:
         for todo in todos:
             f.write(f'{todo.name} ({todo.category})\n{todo.value}\n\n')
-    return send_file(path_or_file='list.txt', as_attachment=True, download_name=filename)
+    return send_file(filename_or_fp='list.txt', as_attachment=True, attachment_filename=filename)
 
 
 

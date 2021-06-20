@@ -9,7 +9,11 @@
         <header>
             <h1>Todo ({{ current_category.capitalize() }})</h1>
             <div>
+                {% if current_category == "all" %}
+                <a href="{{ url_for('download') }}"><img src="/static/images/download.png" id="download-button"></a>
+                {% else %}
                 <a href="{{ url_for('download', category=current_category) }}"><img src="/static/images/download.png" id="download-button"></a>
+                {% endif %}
                 <a href="{{ url_for('create') }}"><img src="/static/images/plus.png" id="add-todo-button"></a>
             </div>
         </header>

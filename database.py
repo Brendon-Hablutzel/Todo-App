@@ -6,7 +6,7 @@ from sqlalchemy import Column, Integer, String, Date, Float, DateTime, Time
 
 Base = declarative_base()
 
-engine = db.create_engine("sqlite:///todo.db", echo=True)
+engine = db.create_engine("sqlite:///todo.db", echo=False)
 
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -17,7 +17,7 @@ class Todo(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    value = Column(String)
+    value = Column(String, nullable=True)
     category = Column(String)
 
     def __repr__(self):
