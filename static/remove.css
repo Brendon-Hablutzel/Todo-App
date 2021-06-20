@@ -9,7 +9,8 @@
 
 
 body {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
     background-color: linear-gradient(to bottom right, white, lightgray);
     margin: 10px;
 }
@@ -17,6 +18,11 @@ body {
 header {
     text-align: center;
     color: var(--one);
+}
+
+#to-remove {
+    color: var(--three);
+    text-decoration: underline;
 }
 
 main {
@@ -31,6 +37,7 @@ main {
     margin: 5px;
     padding: 5px;
     border: 1px solid var(--one);
+    border-radius: 5px;
 }
 
 #confirm:hover {

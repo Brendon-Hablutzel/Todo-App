@@ -2,10 +2,12 @@
     <head>
         <title>Remove Todo</title>
         <link rel="stylesheet" href="/static/remove.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
     </head>
     <body>
         <header>
-            <h1 style="text-align:center;">Are you sure you want to remove '{{ todo.name }}'?</h1>
+            <h1 style="text-align:center;">Are you sure you want to remove <span id="to-remove">'{{ todo.name }}'</span>?</h1>
         </header>
         <main style="display:flex;justify-content:center;">
             <div id="container">
