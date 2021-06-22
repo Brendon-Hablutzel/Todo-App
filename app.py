@@ -74,5 +74,26 @@ def remove(todo_id):
         return render_template('remove.html', todo=todo)
 
 
+@app.route('/rename', methods=['GET', 'POST'])
+def rename():
+    db_session = db_session = scoped_session(sessionmaker(bind=db.engine))
+    todos = db_session.query(db.Todo).all()
+    current_categories = list(set([todo.category for todo in todos]))
+    if request.method == "POST":
+        old_category = request.form.get('old')
+        new_category = request.form.get('new')
+        if not old_category or not new_category:
+            abort(400)
+        else:
+            new_category = new_category.lower()
+            to_update = db_session.query(db.Todo).filter_by(category=old_category).all()
+            for todo in to_update:
+                todo.category = new_category
+            db_session.commit()
+            return redirect(url_for('index'))
+    else:
+        return render_template('rename.html', current_categories=current_categories)
+
+
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=80)
+    app.run()

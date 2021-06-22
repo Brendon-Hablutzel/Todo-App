@@ -1,0 +1,45 @@
+:root {
+    --one: #20152c;
+    --two: #633e5a;
+    --three: #cb95aa;
+    --four: #fdae55;
+    --five: #658cc8;
+}
+
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    background-color: linear-gradient(to bottom right, white, lightgray);
+    margin: 10px;
+}
+
+header {
+    text-align: center;
+    color: var(--one);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+form * {
+    font-size: 20px;
+}
+
+
+#rename {
+    background-color: var(--four);
+    font-size: 30px;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid var(--one);
+    border-radius: 5px;
+}
+
+#rename:hover {
+    cursor: pointer
+}

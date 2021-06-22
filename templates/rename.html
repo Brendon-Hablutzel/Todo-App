@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Rename a Category</title>
+        <link rel="stylesheet" href="static/rename.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <h1 style="text-align:center;">Rename a Category</h1>
+        </header>
+        <main style="display:flex;justify-content:center;">
+            <div id="container">
+                <form method="post">
+                    <label for="old">To Rename:</label>
+                    <select name="old" id="old">
+                        {% for category in current_categories %}
+                        <option value="{{ category }}">{{ category }}</option>
+                        {% endfor %}
+                    </select>
+                    <br><br>
+                    <label for="new">New Name:</label>
+                    <input type="text" name="new" id="new" required>
+                    <br><br>
+                    <input type="submit" value="Rename" id="rename">
+                </form>
+                <a href="{{ url_for('index') }}" id="cancel">Return to Home</a>
+            </div>
+        </main>
+    </body>
+</html>

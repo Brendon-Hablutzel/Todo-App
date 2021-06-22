@@ -95,12 +95,12 @@ header h1 {
 }
 
 
-#add-todo-button,#download-button {
+#add-todo-button,#download-button,#rename-button {
     transition: 0.3s;
     height: 120px;
 }
 
-#download-button {
+#download-button,#rename-button {
     margin-right: 15px;
 }
 
