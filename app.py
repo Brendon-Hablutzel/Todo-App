@@ -9,7 +9,7 @@ from sqlalchemy import or_, func
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def index():
     db_session = scoped_session(sessionmaker(bind=db.engine))
     category = request.args.get('category')
