@@ -46,16 +46,14 @@ def create():
 def download():
     db_session = scoped_session(sessionmaker(bind=db.engine))
     category = request.args.get('category')
-    if not category or category == "all" or category == "All":
+    if not category or category.lower() == "all":
         todos = db_session.query(db.Todo).all()
-        filename = "all_list.txt"
     else:
         todos = db_session.query(db.Todo).filter_by(category=category).all()
-        filename = f"{category}_list.txt"
     with open('list.txt', 'w') as f:
         for todo in todos:
             f.write(f'{todo.name} ({todo.category})\n{todo.value}\n\n')
-    return send_file(filename_or_fp='list.txt', as_attachment=True, attachment_filename=filename)
+    return send_file('list.txt', as_attachment=True, download_name=filename)
 
 
 

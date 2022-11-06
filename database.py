@@ -1,12 +1,14 @@
 import sqlalchemy as db
-import sqlalchemy as db
 from sqlalchemy.orm import declarative_base, sessionmaker
-from sqlalchemy import Column, Integer, String, Date, Float, DateTime, Time
-
+from sqlalchemy import Column, Integer, String
+from dotenv import load_dotenv
+import os
 
 Base = declarative_base()
 
-engine = db.create_engine("sqlite:///todo.db", echo=False)
+load_dotenv()
+
+engine = db.create_engine(os.getenv("DB_URL"), echo=False)
 
 Session = sessionmaker(bind=engine)
 session = Session()

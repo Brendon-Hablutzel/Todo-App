@@ -1,3 +1,6 @@
-todo.db
+*.db
 __pycache__/
 list.txt
+venv/
+.env
+.flaskenv
