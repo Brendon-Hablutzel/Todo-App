@@ -1,5 +1,5 @@
 import sqlalchemy as db
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.orm import declarative_base, sessionmaker, scoped_session
 from sqlalchemy import Column, Integer, String
 from dotenv import load_dotenv
 import os
@@ -10,8 +10,7 @@ load_dotenv()
 
 engine = db.create_engine(os.getenv("DB_URL"), echo=False)
 
-Session = sessionmaker(bind=engine)
-session = Session()
+session = scoped_session(sessionmaker(bind=engine))
 
 
 class Todo(Base):
@@ -24,6 +23,7 @@ class Todo(Base):
 
     def __repr__(self):
         return f"<Todo(name={self.name}, category={self.category})>"
+
 
 # Base.metadata.drop_all(engine)
 Base.metadata.create_all(engine)
